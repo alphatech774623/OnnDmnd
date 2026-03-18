@@ -29,8 +29,8 @@ useEffect(() => {
     separateDialCode: true,
     preferredCountries: ["gb", "in"],
     autoPlaceholder: "polite",
-      loadUtils: () =>
-    import("intl-tel-input/build/js/utils.js"),
+      utilsScript:
+    "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
   });
 
   // save instance
