@@ -113,7 +113,7 @@ if (!fullNumber) {
 
     try {
         setLoading(true)
-      await fetch("https://script.google.com/macros/s/AKfycbyDDyeIvXg9835Lze_TpMGTcBOOUT9DmeVpuPZEEQVMJOxaDK32U0GSN-Bd-wp4R7wt5w/exec", {
+      await fetch("https://script.google.com/macros/s/AKfycbxCZNZpacO9BdyicEZoxkyhfmdb0nKFoHSGjy11e3A-aGESwVdEXTwSsaT_SAJgNwIMRg/exec", {
         method: "POST",
         body: JSON.stringify(data),
       });
