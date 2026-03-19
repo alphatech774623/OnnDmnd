@@ -6,7 +6,7 @@ import {
 } from "react-icons/fa";
 
 const Footer = () => {
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER;
+  const whatsappNumber = "447312039102";
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
   return (
@@ -106,7 +106,7 @@ const Footer = () => {
               <div className="d-flex align-items-center mb-3">
                 <FaEnvelope className="me-2 text-danger" />
                 <span style={{ color: "#555" }}>
-                  {import.meta.env.VITE_EMAIL}
+                 onndmnd@gmail.com
                 </span>
               </div>
 

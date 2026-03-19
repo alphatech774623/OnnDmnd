@@ -14,7 +14,7 @@ import "intl-tel-input/build/css/intlTelInput.css";
 import { useEffect, useRef } from "react";
 
 const Contact = () => {
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER; 
+  const whatsappNumber = "447312039102"; 
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
   const [toast ,setToast] = useState({show : false, message : "", type : "success"})
     const [errors, setErrors] = useState({});
@@ -29,8 +29,8 @@ useEffect(() => {
     separateDialCode: true,
     preferredCountries: ["gb", "in"],
     autoPlaceholder: "polite",
-      utilsScript:
-    "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+      loadUtils: () =>
+    import("intl-tel-input/build/js/utils.js"),
   });
 
   // save instance
@@ -113,7 +113,7 @@ if (!fullNumber) {
 
     try {
         setLoading(true)
-      await fetch(import.meta.env.VITE_SHEET_URL, {
+      await fetch("https://script.google.com/macros/s/AKfycbyDDyeIvXg9835Lze_TpMGTcBOOUT9DmeVpuPZEEQVMJOxaDK32U0GSN-Bd-wp4R7wt5w/exec", {
         method: "POST",
         body: JSON.stringify(data),
       });
@@ -175,7 +175,7 @@ if (!fullNumber) {
 
               <div className="d-flex align-items-center mb-3 mt-4">
                 <FaEnvelope className="me-3" />
-                <span>{import.meta.env.VITE_EMAIL}</span>
+                <span>onndmand@gmail.com</span>
               </div>
 
               <div className="d-flex align-items-center mb-4">
