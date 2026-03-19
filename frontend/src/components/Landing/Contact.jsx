@@ -14,123 +14,123 @@ import "intl-tel-input/build/css/intlTelInput.css";
 import { useEffect, useRef } from "react";
 
 const Contact = () => {
-  const whatsappNumber = "447312039102"; 
-  const whatsappLink = `https://wa.me/${whatsappNumber}`;
-  const [toast ,setToast] = useState({show : false, message : "", type : "success"})
-    const [errors, setErrors] = useState({});
-    const [loading, setLoading] = useState(false);
+//   const whatsappNumber = "447312039102"; 
+//   const whatsappLink = `https://wa.me/${whatsappNumber}`;
+//   const [toast ,setToast] = useState({show : false, message : "", type : "success"})
+//     const [errors, setErrors] = useState({});
+//     const [loading, setLoading] = useState(false);
     
 
-const phoneRef = useRef();
+// const phoneRef = useRef();
 
-useEffect(() => {
-  const iti = intlTelInput(phoneRef.current, {
-    initialCountry: "gb", // UK default
-    separateDialCode: true,
-    preferredCountries: ["gb", "in"],
-    autoPlaceholder: "polite",
-      loadUtils: () =>
-    import("intl-tel-input/build/js/utils.js"),
-  });
+// useEffect(() => {
+//   const iti = intlTelInput(phoneRef.current, {
+//     initialCountry: "gb", // UK default
+//     separateDialCode: true,
+//     preferredCountries: ["gb", "in"],
+//     autoPlaceholder: "polite",
+//       loadUtils: () =>
+//     import("intl-tel-input/build/js/utils.js"),
+//   });
 
-  // save instance
-  phoneRef.current.iti = iti;
+//   // save instance
+//   phoneRef.current.iti = iti;
 
-  return ()=>{
-    iti.destroy()
-  }
-}, []);
+//   return ()=>{
+//     iti.destroy()
+//   }
+// }, []);
 
-    const validate = (data) => {
-  let newErrors = {};
-
-
-
-  // Name validation
-  if (!data.name.trim()) {
-    newErrors.name = "Name is required";
-  } else if (data.name.length < 3) {
-    newErrors.name = "Name must be at least 3 characters";
-  }
-
-  // Email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!data.email.trim()) {
-    newErrors.email = "Email is required";
-  } else if (!emailRegex.test(data.email)) {
-    newErrors.email = "Invalid email format";
-  }
+//     const validate = (data) => {
+//   let newErrors = {};
 
 
-  // Message validation
-  if (!data.message.trim()) {
-    newErrors.message = "Message cannot be empty";
-  } else if (data.message.length < 10) {
-    newErrors.message = "Message must be at least 10 characters";
-  }
 
-  return newErrors;
-};
-  // 🔥 Google Sheet Submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+//   // Name validation
+//   if (!data.name.trim()) {
+//     newErrors.name = "Name is required";
+//   } else if (data.name.length < 3) {
+//     newErrors.name = "Name must be at least 3 characters";
+//   }
 
-    const iti = phoneRef.current.iti;
-
-const fullNumber = iti.getNumber();
-
-if (!fullNumber) {
-  setErrors({ mobileNumber: "Invalid phone number" });
-  setToast({
-    show: true,
-    message: "Invalid phone number",
-    type: "error",
-  });
-  return;
-}
+//   // Email validation
+//   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//   if (!data.email.trim()) {
+//     newErrors.email = "Email is required";
+//   } else if (!emailRegex.test(data.email)) {
+//     newErrors.email = "Invalid email format";
+//   }
 
 
-  const data = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      mobileNumber: fullNumber,
-      message: e.target.message.value,
-    };
+//   // Message validation
+//   if (!data.message.trim()) {
+//     newErrors.message = "Message cannot be empty";
+//   } else if (data.message.length < 10) {
+//     newErrors.message = "Message must be at least 10 characters";
+//   }
 
-      const validationErrors = validate(data);
+//   return newErrors;
+// };
+//   // 🔥 Google Sheet Submit
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
 
-  if (Object.keys(validationErrors).length > 0) {
-    setErrors(validationErrors);
-    setToast({
-      show: true,
-      message: "Please fix errors before submitting!",
-      type: "error",
-    });
-    return;
-  }
+//     const iti = phoneRef.current.iti;
 
-  setErrors({});
+// const fullNumber = iti.getNumber();
 
-    try {
-        setLoading(true)
-      await fetch("https://script.google.com/macros/s/AKfycbyDDyeIvXg9835Lze_TpMGTcBOOUT9DmeVpuPZEEQVMJOxaDK32U0GSN-Bd-wp4R7wt5w/exec", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+// if (!fullNumber) {
+//   setErrors({ mobileNumber: "Invalid phone number" });
+//   setToast({
+//     show: true,
+//     message: "Invalid phone number",
+//     type: "error",
+//   });
+//   return;
+// }
 
-     setToast({show : true, message : "Message Sent!, we will reach you soon. Thank you!", type : "success"})
-      e.target.reset();
-      setLoading(false)
-    } catch (error) {
-        setToast({
-    show: true,
-    message: "Failed to send message, Internal Server Error!",
-    type: "error",
+
+//   const data = {
+//       name: e.target.name.value,
+//       email: e.target.email.value,
+//       mobileNumber: fullNumber,
+//       message: e.target.message.value,
+//     };
+
+//       const validationErrors = validate(data);
+
+//   if (Object.keys(validationErrors).length > 0) {
+//     setErrors(validationErrors);
+//     setToast({
+//       show: true,
+//       message: "Please fix errors before submitting!",
+//       type: "error",
+//     });
+//     return;
+//   }
+
+//   setErrors({});
+
+//     try {
+//         setLoading(true)
+//       await fetch("https://script.google.com/macros/s/AKfycbyDDyeIvXg9835Lze_TpMGTcBOOUT9DmeVpuPZEEQVMJOxaDK32U0GSN-Bd-wp4R7wt5w/exec", {
+//         method: "POST",
+//         body: JSON.stringify(data),
+//       });
+
+//      setToast({show : true, message : "Message Sent!, we will reach you soon. Thank you!", type : "success"})
+//       e.target.reset();
+//       setLoading(false)
+//     } catch (error) {
+//         setToast({
+//     show: true,
+//     message: "Failed to send message, Internal Server Error!",
+//     type: "error",
     
-  });
-  setLoading(false)
-    }
-  };
+//   });
+//   setLoading(false)
+//     }
+//   };
 
   return (
     <>
