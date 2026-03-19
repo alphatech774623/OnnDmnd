@@ -76,8 +76,3 @@ For feedback or improvements, use the contact form in the app or open an issue.
 ---
 
 Made with ?? for OnnDmnd.
-
-### Add Environmental Variable 
-  VITE_WHATSAPP_NUMBER
-  VITE_SHEET_URL - url for post form data to the google sheet
-  VITE_EMAIL

@@ -175,7 +175,7 @@ if (!fullNumber) {
 
               <div className="d-flex align-items-center mb-3 mt-4">
                 <FaEnvelope className="me-3" />
-                <span>onndmand@gmail.com</span>
+                <span>onndmnd@gmail.com</span>
               </div>
 
               <div className="d-flex align-items-center mb-4">
